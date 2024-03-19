@@ -27,7 +27,7 @@ Pada contoh di atas, kita membuat fungsi `sapa` yang tidak menerima parameter. F
 
 > __Penting__: Jangan lupa untuk memberikan indentasi pada blok kode di dalam fungsi. 
 > Indentasi yang digunakan biasanya adalah 4 spasi atau 1 tab.
-> Di Python, indentasi sangat penting karena digunakan untuk menandai blok kode. Selain itu, Python juga tidak menggunakan tanda kurung kurawal `{}` atau titik koma `,` seperti pada bahasa pemrograman lainnya.
+> Di Python, indentasi sangat penting karena digunakan untuk menandai blok kode. Selain itu, Python juga tidak menggunakan tanda kurung kurawal `{}` atau titik koma `;` seperti pada bahasa pemrograman lainnya.
 
 ### Memanggil Fungsi
 
