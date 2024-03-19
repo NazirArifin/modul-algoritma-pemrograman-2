@@ -34,15 +34,22 @@ Algoritma invers matrix dapat diilustrasikan sebagai berikut:
 
 ```python
 def determinant(matrix):
+    # Jika matriks adalah 1x1, kembalikan elemen tunggal tersebut
     if len(matrix) == 1:
         return matrix[0][0]
+    # Jika matriks adalah 2x2, hitung determinannya secara langsung
     elif len(matrix) == 2:
         return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
     else:
+        # Inisialisasi determinan
         det = 0
+        # Iterasi melalui setiap kolom matriks
         for i in range(len(matrix)):
+            # Hitung minor dengan menghapus baris pertama dan kolom i
             minor = [row[:i] + row[i+1:] for row in (matrix[1:])]
+            # Tambahkan kofaktor ke determinan
             det += ((-1) ** i) * matrix[0][i] * determinant(minor)
+        # Kembalikan determinan
         return det
 
 def inverse_matrix(matrix):
@@ -95,7 +102,29 @@ Algoritma transpose matrix dapat diilustrasikan sebagai berikut:
 
 ```python
 def transpose_matrix(matrix):
-    return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+    # Dapatkan jumlah baris dalam matrix asli
+    num_rows = len(matrix)
+    
+    # Dapatkan jumlah kolom dalam matrix asli
+    num_cols = len(matrix[0])
+    
+    # Buat matrix baru dengan dimensi yang ditransposisi
+    transposed_matrix = []
+    
+    # Iterasi setiap kolom pada matrix asli
+    for i in range(num_cols):
+        # Buat baris baru untuk matrix transpos
+        new_row = []
+        
+        # Iterasi setiap baris pada matrix asli
+        for j in range(num_rows):
+            # Tambahkan elemen pada kolom dan baris saat ini ke baris baru
+            new_row.append(matrix[j][i])
+        
+        # Tambahkan baris baru ke matrix transpos
+        transposed_matrix.append(new_row)
+    
+    return transposed_matrix
 ```
 
 Pada contoh di atas, matrix adalah matrix yang akan diinvers. Algoritma ini akan melakukan iterasi sebanyak m kali, dimana m adalah panjang dari matrix. Pada setiap iterasi, algoritma akan menukar baris dan kolom pada matrix.
@@ -132,10 +161,37 @@ Algoritma adjoin matrix dapat diilustrasikan sebagai berikut:
 
 ```python
 def adjoin_matrix(matrix):
-    return [[(-1) ** (i+j) * determinant([row[:j] + row[j+1:] for row in (matrix[:i] + matrix[i+1:])]) for j in range(len(matrix))] for i in range(len(matrix))]
+    # Inisialisasi matriks adjoint
+    adjoint_matrix = []
+
+    # Iterasi melalui setiap baris dalam matriks asli
+    for i in range(len(matrix)):
+        # Inisialisasi baris baru untuk matriks adjoint
+        adjoint_row = []
+
+        # Iterasi melalui setiap kolom dalam matriks asli
+        for j in range(len(matrix)):
+            # Hitung matriks minor dengan menghapus baris dan kolom saat ini
+            minor_matrix = [row[:j] + row[j+1:] for row in (matrix[:i] + matrix[i+1:])]
+
+            # Hitung determinan dari matriks minor
+            minor_determinant = determinant(minor_matrix)
+
+            # Hitung kofaktor dengan mengalikan determinan dengan (-1)^(i+j)
+            cofactor = ((-1) ** (i+j)) * minor_determinant
+
+            # Tambahkan kofaktor ke baris adjoint
+            adjoint_row.append(cofactor)
+
+        # Tambahkan baris adjoint ke matriks adjoint
+        adjoint_matrix.append(adjoint_row)
+
+    return adjoint_matrix
 ```
 
 Pada contoh di atas, matrix adalah matrix yang akan diinvers. Algoritma ini akan melakukan iterasi sebanyak n kali, dimana n adalah panjang dari matrix. Pada setiap iterasi, algoritma akan menghitung determinan dari matrix, lalu mengubah tanda dari elemen-elemen matrix.
+
+> Algoritma ini membutuhkan fungsi determinant yang telah dijelaskan pada bagian sebelumnya.
 
 Untuk melakukan operasi adjoin matrix, kita dapat menggunakan fungsi adjoin_matrix seperti pada contoh di bawah ini.
 
@@ -146,7 +202,7 @@ A = [
 ]
 
 A_adjoin = adjoin_matrix(A)
-print(A_adjoin) # [[1, -2], [-3, 4]]
+print(A_adjoin)
 ```
 
 ### Konsep Operasi Kofaktor Matrix
@@ -167,11 +223,38 @@ Pada contoh di atas, matrix A memiliki ukuran 2x2. Operasi kofaktor matrix A dil
 Algoritma kofaktor matrix dapat diilustrasikan sebagai berikut:
 
 ```python
-def kofactor_matrix(matrix):
-    return [[(-1) ** (i+j) * determinant([row[:j] + row[j+1:] for row in (matrix[:i] + matrix[i+1:])]) for j in range(len(matrix))] for i in range(len(matrix))]
+def cofactor_matrix(matrix):
+    # Inisialisasi matriks kofaktor
+    cofactor_matrix = []
+
+    # Iterasi melalui setiap baris dalam matriks asli
+    for i in range(len(matrix)):
+        # Inisialisasi baris baru untuk matriks kofaktor
+        cofactor_row = []
+
+        # Iterasi melalui setiap kolom dalam matriks asli
+        for j in range(len(matrix)):
+            # Hitung matriks minor dengan menghapus baris dan kolom saat ini
+            minor_matrix = [row[:j] + row[j+1:] for row in (matrix[:i] + matrix[i+1:])]
+
+            # Hitung determinan dari matriks minor
+            minor_determinant = determinant(minor_matrix)
+
+            # Hitung kofaktor dengan mengalikan determinan dengan (-1)^(i+j)
+            cofactor = ((-1) ** (i+j)) * minor_determinant
+
+            # Tambahkan kofaktor ke baris kofaktor
+            cofactor_row.append(cofactor)
+
+        # Tambahkan baris kofaktor ke matriks kofaktor
+        cofactor_matrix.append(cofactor_row)
+
+    return cofactor_matrix
 ```
 
 Pada contoh di atas, matrix adalah matrix yang akan diinvers. Algoritma ini akan melakukan iterasi sebanyak n kali, dimana n adalah panjang dari matrix. Pada setiap iterasi, algoritma akan menghitung determinan dari matrix, lalu mengubah tanda dari elemen-elemen matrix.
+
+> Algoritma ini membutuhkan fungsi determinant yang telah dijelaskan pada bagian sebelumnya.
 
 Untuk melakukan operasi kofaktor matrix, kita dapat menggunakan fungsi kofactor_matrix seperti pada contoh di bawah ini.
 
