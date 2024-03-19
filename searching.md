@@ -89,3 +89,12 @@ print(index) # 3
 
 Beberapa kelebihan dari algoritma Binary Search adalah efisien untuk list yang besar, karena kompleksitas waktu yang cepat. Namun, algoritma ini hanya dapat digunakan pada list yang sudah terurut, sehingga tidak efisien untuk list yang belum terurut. Selain itu, algoritma ini juga tidak efisien untuk list yang elemen yang dicari tidak ada. 
 
+## Tugas
+
+1. Buatlah program untuk mencari elemen dalam list dengan algoritma Sequential Search.
+2. Buatlah program untuk mencari elemen dalam list dengan algoritma Binary Search.
+3. Ujilah kedua program tersebut dengan beberapa kasus uji yang berbeda.
+
+## Bonus
+
+- List pada Python, seperti pada bahasa pemrograman umumnya, memiliki beberapa metode bawaan yang dapat digunakan untuk pencarian, seperti `index` dan `count`. Coba cari tahu cara penggunaan metode tersebut.
