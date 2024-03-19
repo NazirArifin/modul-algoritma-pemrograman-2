@@ -141,6 +141,15 @@ Anda perhatikan bahwa:
 6. Dengan menggunakan metode pop, hapus angka terakhir pada list
 7. Print panjang list
 
+---
+
+1. Buatlah list yang berisi 5 nama buah
+2. Dengan menggunakan metode append, tambahkan 2 nama buah pada list
+3. Dengan menggunakan metode remove, hapus 1 nama buah pada list
+4. Dengan menggunakan metode pop, hapus nama buah terakhir pada list
+5. Print panjang list
+
+
 
 
 
